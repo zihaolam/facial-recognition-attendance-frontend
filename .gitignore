@@ -47,3 +47,5 @@ amplifytools.xcconfig
 amplify
 
 src/aws-exports.js
+
+.env
