@@ -10,4 +10,9 @@ export default defineConfig({
     // necessary for segment analytics lib to work
     global: {},
   },
+  resolve: {
+    alias: {
+      './runtimeConfig': './runtimeConfig.browser',
+    },
+  }
 })

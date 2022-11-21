@@ -21,6 +21,7 @@ export const login = (username: string, password: string) => new Promise(async (
 export const logout = () => new Promise(async (resolve, reject) => {
     try {
         await Auth.signOut();
+        window.location.reload()
         resolve(true);
     }
     catch (error) {
@@ -31,7 +32,7 @@ export const logout = () => new Promise(async (resolve, reject) => {
 export const checkLoggedIn = (): Promise<boolean> => new Promise(async (resolve, reject) => {
     try {
         const user = await Auth.currentAuthenticatedUser()
-        return resolve(true);
+        // return resolve(true);
         if (!user) return resolve(false);
         return resolve(true);
     }

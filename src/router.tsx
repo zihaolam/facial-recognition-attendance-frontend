@@ -22,61 +22,49 @@ const Protected: FC<{ children: ReactNode }> = ({ children }) => {
 export const router = createBrowserRouter([
   {
     path: "/login",
-    loader: Loader,
+    loader: () => <Loader isLoading={true} />,
     element: <Routes.LoginRoute />,
   },
   {
     path: "/",
-    element: <Home />,
-    loader: Loader,
+    element: (
+      <Protected>
+        <Home />
+      </Protected>
+    ),
+    loader: () => <Loader isLoading={true} />,
     children: [
       {
         path: "",
-        element: (
-          <Protected>
-            <Routes.AttendanceRoute />
-          </Protected>
-        ),
+        element: <Routes.UserRoute />,
       },
+      // {
+      //   path: "attendance",
+      //   element: <Routes.AttendanceRoute />,
+      // },
       {
         path: "register",
-        element: (
-          <Protected>
-            <Routes.RegisterRoute />
-          </Protected>
-        ),
+        element: <Routes.RegisterRoute />,
       },
       {
         path: "user",
-        element: (
-          <Protected>
-            <Routes.UserRoute />
-          </Protected>
-        ),
+        element: <Routes.UserRoute />,
       },
       {
         path: "user/:userId",
-        element: (
-          <Protected>
-            <Routes.UserShowRoute />
-          </Protected>
-        ),
+        element: <Routes.UserShowRoute />,
       },
       {
         path: "event",
-        element: (
-          <Protected>
-            <Routes.EventRoute />
-          </Protected>
-        ),
+        element: <Routes.EventRoute />,
+      },
+      {
+        path: "event/new",
+        element: <Routes.NewEventRoute />,
       },
       {
         path: "event/:eventId",
-        element: (
-          <Protected>
-            <Routes.EventShowRoute />
-          </Protected>
-        ),
+        element: <Routes.EventShowRoute />,
       },
     ],
   },

@@ -1,16 +1,9 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { Amplify, Auth } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports.js";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom";
-import { Loader } from "components";
+import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { FC, ReactNode, useEffect, useState } from "react";
-import { checkLoggedIn } from "utils/auth";
 import { router } from "router";
 
 Amplify.configure(awsconfig);

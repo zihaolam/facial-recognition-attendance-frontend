@@ -1,4 +1,5 @@
 export const queryKeys = {
     attendance: "attendance",
-    user: "user"
+    user: "user",
+    event: "event"
 }

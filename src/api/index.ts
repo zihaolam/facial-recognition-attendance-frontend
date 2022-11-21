@@ -4,9 +4,11 @@ import axios from 'axios'
 import { queryKeys } from './queryKeys';
 import { EventApi } from './event';
 
-// define the api
+
+const baseURL = import.meta.env.DEV ? import.meta.env.VITE_API_DEV_ENDPOINT : import.meta.env.VITE_API_PROD_ENDPOINT
+
 export const apiInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE,
+  baseURL,
 })
 
 apiInstance.interceptors.response.use(response => response.data?.body?.data || response.data?.body || response.data)

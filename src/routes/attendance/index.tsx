@@ -3,9 +3,9 @@ import { useQuery } from "react-query";
 import { api, queryKeys } from "api";
 import { AttendanceSchema } from "api/attendance/schemas";
 import { CgSpinnerAlt } from "react-icons/cg";
-import { formatDate } from "utils/formatDate";
+import { formatDate } from "utils/dateHelper";
 
-const headers = ["Date", "Image", "Student ID"];
+const headers = ["Date", "Image", "Name"];
 
 const AttendanceRoute: FC = () => {
   const { data: attendances, isLoading } = useQuery(
@@ -17,7 +17,7 @@ const AttendanceRoute: FC = () => {
     <div className="overflow-x-auto">
       <div className="flex justify-between items-end  ml-2 mt-5">
         <div className="font-bold text-2xl mb-5">Attendance</div>
-        <div>
+        <div className="mr-2">
           Total: {attendances?.length || "0"}
           <span className="text-sm ml-1 text-gray-700">records</span>
         </div>
@@ -39,7 +39,7 @@ const AttendanceRoute: FC = () => {
             </tr>
           ) : attendances?.length ? (
             attendances?.map((attendance: AttendanceSchema) => (
-              <tr key={attendance.sk}>
+              <tr key={attendance.pk + attendance.sk}>
                 <td>{formatDate(attendance.timestamp)}</td>
                 <td>
                   <img

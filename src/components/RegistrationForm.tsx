@@ -8,8 +8,8 @@ import {
 import { api } from "api";
 import { encodeFileAsBase64 } from "utils/fileHelper";
 import { useMutation } from "react-query";
-import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { getKeyData } from "utils/stringTransform";
+import { FormControlButtons } from "components";
 
 const processInput = async (file: File) => ({
   faceImage: await encodeFileAsBase64(file),
@@ -68,7 +68,7 @@ function RegistrationForm() {
           <h3 className="font-bold text-lg">Successful Registrations</h3>
           <div className="py-4 flex flex-col gap-2">
             {successfulSignups.map(({ pk }) => (
-              <span key={pk}>name: {getKeyData(pk)}</span>
+              <span key={pk}>name: {getKeyData(pk, 1)}</span>
             ))}
           </div>
           <div className="modal-action">
@@ -139,27 +139,7 @@ function RegistrationForm() {
               </div>
             ))}
           </div>
-          <div className="flex gap-x-1 mt-3 justify-end">
-            <button
-              className="rounded-md flex justify-center items-center bg-gray-500 text-white font-bold hover:ring-2 hover:ring-offset-2 hover:ring-gray-900 mr-1 duration-200 disabled:cursor-not-allowed h-10 w-24"
-              type="reset"
-              disabled={isLoading}
-              onClick={() => reset()}
-            >
-              Reset
-            </button>
-            <button
-              className="rounded-md flex justify-center items-center bg-gray-900 text-white font-bold hover:ring-2 hover:ring-offset-2 hover:ring-gray-900 disabled:ring-2 disabled:ring-offset-2 disabled:ring-gray-900 mr-1 duration-200 disabled:opacity-90 disabled:cursor-not-allowed h-10 w-24"
-              disabled={isLoading}
-              type="submit"
-            >
-              {isLoading ? (
-                <CgSpinnerTwoAlt className="h-full animate-spin" />
-              ) : (
-                "Submit"
-              )}
-            </button>
-          </div>
+          <FormControlButtons isLoading={isLoading} reset={reset} />
         </div>
       </form>
     </>
